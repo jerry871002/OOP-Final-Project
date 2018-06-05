@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	}
 
 	// Stores original image
-	Mat image = imread(argv[1]);
+	Mat image = imread(argv[1]);//Mat是用來儲存二為矩陣的class
 	if(image.empty()) {
 		cout << "Image Error\n";
 		exit(-1);
