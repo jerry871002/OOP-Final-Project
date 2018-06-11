@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	}
 
 	// Stores original image
-	Mat image = imread(argv[1]);//Mat是用來儲存二為矩陣的class
+	Mat image = imread(argv[1]);
 	if(image.empty()) {
 		cout << "Image Error\n";
 		exit(-1);
@@ -68,9 +68,8 @@ int main(int argc, char** argv) {
 	for(int row=0; row < image.rows; row++) {
 		for(int col=0; col < image.cols; col++) {
 			for(int color=0; color < 3; color++) {
-
 				// stores the pixel details
-				Vec3b pixel = image.at<Vec3b>(Point(row,col));
+				Vec3b pixel = image.at<Vec3b>(Point(row,col));//����
 
 				// if bit is 1 : change LSB of present color value to 1.
 				// if bit is 0 : change LSB of present color value to 0.
@@ -119,3 +118,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
