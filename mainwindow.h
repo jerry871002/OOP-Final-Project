@@ -16,6 +16,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_choosefile_encode_clicked();
+
+    void on_pushButton_choosefile_decode_clicked();
+
 private:
     Ui::MainWindow *ui;
     LoginDialog *logindialog;

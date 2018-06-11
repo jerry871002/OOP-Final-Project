@@ -3,7 +3,7 @@
  <class>LoginDialog</class>
  <widget class="QDialog" name="LoginDialog">
   <property name="windowTitle">
-   <string>Login Window</string>
+   <string>The Secret</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
