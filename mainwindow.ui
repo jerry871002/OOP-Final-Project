@@ -14,7 +14,31 @@
    <string>The Secret</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_username">
+        <property name="text">
+         <string>Hello</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_logout">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Log out</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="font">
@@ -29,7 +53,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>

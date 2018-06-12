@@ -20,6 +20,8 @@ private slots:
     void on_pushButton_choosefile_encode_clicked();
     void on_pushButton_choosefile_decode_clicked();
 
+    void on_pushButton_logout_clicked();
+
 private:
     Ui::MainWindow *ui;
     LoginDialog *logindialog;

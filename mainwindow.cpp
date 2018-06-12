@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    logindialog = new LoginDialog(this);
+    logindialog->show();
+    hide();
 }
 
 MainWindow::~MainWindow()
@@ -39,4 +42,10 @@ void MainWindow::on_pushButton_choosefile_decode_clicked()
     int w = ui->label_pic_decode->width();
     int h = ui->label_pic_decode->height();
     ui->label_pic_decode->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+}
+
+void MainWindow::on_pushButton_logout_clicked()
+{
+    hide();
+    logindialog->show();
 }
