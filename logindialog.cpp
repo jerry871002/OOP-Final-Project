@@ -16,6 +16,10 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::on_pushButton_login_clicked()
 {
+    // Get the input
+    QString username = ui->lineEdit_username->text();
+    QString password = ui->lineEdit_password->text();
+
     hide();
     parentWidget()->show();
 }

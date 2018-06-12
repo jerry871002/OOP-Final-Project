@@ -18,7 +18,6 @@ public:
 
 private slots:
     void on_pushButton_choosefile_encode_clicked();
-
     void on_pushButton_choosefile_decode_clicked();
 
 private:

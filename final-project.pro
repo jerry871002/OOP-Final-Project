@@ -26,12 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    logindialog.cpp
+        logindialog.cpp
 
 HEADERS += \
         mainwindow.h \
-    logindialog.h
+        logindialog.h
 
 FORMS += \
         mainwindow.ui \
-    logindialog.ui
+        logindialog.ui
+
+LIBS += \
+        /usr/local/Cellar/opencv/3.4.1_5/lib/*.dylib
+
+INCLUDEPATH += \
+        /usr/local/Cellar/opencv/3.4.1_5/include
+
