@@ -20,6 +20,9 @@ private slots:
     void on_pushButton_choosefile_encode_clicked();
     void on_pushButton_choosefile_decode_clicked();
 
+    void on_pushButton_encode_clicked();
+    void on_pushButton_decode_clicked();
+
     void on_pushButton_logout_clicked();
 
 private:
