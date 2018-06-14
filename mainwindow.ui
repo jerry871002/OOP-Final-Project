@@ -27,7 +27,10 @@
          </font>
         </property>
         <property name="text">
-         <string>Hello</string>
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -60,7 +63,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -94,7 +97,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="lineEdit_filepath_encode"/>
+           <widget class="QLineEdit" name="lineEdit_filepath_encode">
+            <property name="dragEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_choosefile_encode">
@@ -163,7 +173,11 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLineEdit" name="lineEdit_filepath_decode"/>
+           <widget class="QLineEdit" name="lineEdit_filepath_decode">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_choosefile_decode">

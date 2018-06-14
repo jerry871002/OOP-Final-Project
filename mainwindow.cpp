@@ -3,8 +3,8 @@
 #include "logindialog.h"
 #include <QDesktopWidget>
 #include <QFileDialog>
-#include <QDir>
 #include <QPixmap>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

@@ -22,4 +22,12 @@ void LoginDialog::on_pushButton_login_clicked()
 
     hide();
     parentWidget()->show();
+
+    parentWidget()->
+}
+
+void LoginDialog::on_pushButton_clear_clicked()
+{
+    ui->lineEdit_username->clear();
+    ui->lineEdit_password->clear();
 }
