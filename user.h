@@ -11,6 +11,9 @@ public:
     void encode();
     void decode();
 
+    bool checkEncode();
+    bool checkDecode();
+
 protected:
     QString firstName;
     QString lastName;

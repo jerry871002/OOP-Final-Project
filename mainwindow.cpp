@@ -69,10 +69,24 @@ void MainWindow::on_pushButton_logout_clicked()
 
 void MainWindow::on_pushButton_encode_clicked()
 {
-
+    if (currentUser->checkEncode())
+    {
+        currentUser->encode();
+    }
+    else
+    {
+        QMessageBox::warning(this, "Not Authorized!", "Current user is not allowed to encode.");
+    }
 }
 
 void MainWindow::on_pushButton_decode_clicked()
 {
-
+    if (currentUser->checkDecode())
+    {
+        currentUser->decode();
+    }
+    else
+    {
+        QMessageBox::warning(this, "Not Authorized!", "Current user is not allowed to decode.");
+    }
 }

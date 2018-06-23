@@ -9,23 +9,23 @@ int main()
 {
     char filename[] = "test.txt";
     fstream fp;
-    fp.open(filename, ios::out);//¶}±ÒÀÉ®×
-    
+    fp.open(filename, ios::out);
+
     string input, output;
     string key;
     int intkey = 0;
-    
+
     cout << "Input your sentence: ";
     getline(cin, input);
-    
+
     int *code = new int[input.length()];
-    
+
     cout << "Input your key: ";
     getline(cin, key);
-    
+
     for(int i = 0; i < key.length(); i++)
         intkey += (int)key[i];
-        
+
     intkey /= key.length();
 
     for(int i = 0; i < input.length(); i++)
@@ -35,6 +35,6 @@ int main()
     }
 
     delete(code);
-    fp.close();//Ãö³¬ÀÉ®×
+    fp.close();//ï¿½ï¿½ï¿½ï¿½ï¿½É®ï¿½
     return 0;
 }

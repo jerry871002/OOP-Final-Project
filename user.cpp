@@ -9,6 +9,16 @@ User::User(QString fn, QString ln, bool en, bool de) :
 
 }
 
+bool User::checkEncode()
+{
+    return canEncode;
+}
+
+bool User::checkDecode()
+{
+    return canDecode;
+}
+
 void User::encode()
 {
 
