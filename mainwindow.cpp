@@ -56,6 +56,8 @@ void MainWindow::on_pushButton_logout_clicked()
 {
     hide();
 
+    delete currentUser;
+
     // Move the login dialog to the center of the screen
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     int x = (screenGeometry.width() - logindialog->width()) / 2;

@@ -1,6 +1,8 @@
 #include "user.h"
 
-User::User(bool en, bool de) :
+User::User(QString fn, QString ln, bool en, bool de) :
+    firstName(fn),
+    lastName(ln),
     canEncode(en),
     canDecode(de)
 {

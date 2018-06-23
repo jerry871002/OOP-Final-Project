@@ -6,7 +6,7 @@
 class User
 {
 public:
-    User(bool en = false, bool de = false);
+    User(QString fn = 0, QString ln = 0, bool en = false, bool de = false);
 
     void encode();
     void decode();
@@ -14,9 +14,6 @@ public:
 protected:
     QString firstName;
     QString lastName;
-
-    QString username;
-    QString password;
 
     // Access right to encode() and decode()
     const bool canEncode;
