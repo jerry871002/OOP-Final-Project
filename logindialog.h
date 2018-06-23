@@ -2,6 +2,9 @@
 #define LOGINDIALOG_H
 
 #include <QDialog>
+#include <QtSql>
+#include <QFileInfo>
+#include <QMessageBox>
 
 namespace Ui {
 class LoginDialog;
@@ -17,9 +20,12 @@ public:
 
 private slots:
     void on_pushButton_login_clicked();
+    void on_pushButton_clear_clicked();
 
 private:
     Ui::LoginDialog *ui;
+
+    QSqlDatabase myDB;
 };
 
 #endif // LOGINDIALOG_H

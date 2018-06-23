@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,12 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    logindialog.cpp
+        logindialog.cpp \
+        user.cpp
 
 HEADERS += \
         mainwindow.h \
-    logindialog.h
+        logindialog.h \
+        user.h
 
 FORMS += \
         mainwindow.ui \
-    logindialog.ui
+        logindialog.ui
+
+LIBS += \
+        /usr/local/Cellar/opencv/3.4.1_5/lib/*.dylib
+
+INCLUDEPATH += \
+        /usr/local/Cellar/opencv/3.4.1_5/include
+
