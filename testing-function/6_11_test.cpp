@@ -35,6 +35,6 @@ int main()
     }
 
     delete(code);
-    fp.close();//�����ɮ�
+    fp.close();
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "logindialog.h"
+#include "ui_logindialog.h"
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QPixmap>
@@ -54,8 +55,7 @@ void MainWindow::on_pushButton_choosefile_decode_clicked()
 
 void MainWindow::on_pushButton_logout_clicked()
 {
-    hide();
-
+    logindialog->ui->label_status->setText("[+]Connected to Database File");
     delete currentUser;
 
     // Move the login dialog to the center of the screen
@@ -64,6 +64,7 @@ void MainWindow::on_pushButton_logout_clicked()
     int y = (screenGeometry.height() - logindialog->height()) / 2;
     logindialog->move(x, y);
 
+    hide();
     logindialog->show();
 }
 
@@ -71,7 +72,14 @@ void MainWindow::on_pushButton_encode_clicked()
 {
     if (currentUser->checkEncode())
     {
-        currentUser->encode();
+        QString file_name = ui->lineEdit_filepath_encode->text();
+        QString messageToHide = ui->textEdit_hide->toPlainText();
+        QString messageKey = ui->textEdit_key_encode->toPlainText();
+
+        // Check if all neccessary information are provided
+        if (!file_name.isEmpty() && !messageToHide.isEmpty() && !messageKey.isEmpty())
+            currentUser->encode(file_name, messageToHide, messageKey);
+
     }
     else
     {
@@ -83,7 +91,12 @@ void MainWindow::on_pushButton_decode_clicked()
 {
     if (currentUser->checkDecode())
     {
-        currentUser->decode();
+        QString file_name = ui->lineEdit_filepath_decode->text();
+        QString messageKey = ui->textEdit_key_decode->toPlainText();
+
+        // Check if all neccessary information are provided
+        if (!file_name.isEmpty() && !messageKey.isEmpty())
+            currentUser->decode(file_name, messageKey);
     }
     else
     {

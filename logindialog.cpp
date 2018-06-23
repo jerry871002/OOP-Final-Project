@@ -21,11 +21,11 @@ LoginDialog::LoginDialog(QWidget *parent) :
         if (myDB.open())
             ui->label_status->setText("[+]Connected to Database File");
         else
-            ui->label_status->setText("[+]Database File exist but not opened");
+            ui->label_status->setText("[!]Database File exist but not opened");
     }
     else
     {
-        ui->label_status->setText("[!]Database File doesn't exist");
+        ui->label_status->setText("[-]Database File doesn't exist");
     }
 }
 
@@ -43,7 +43,7 @@ void LoginDialog::on_pushButton_login_clicked()
     QString username = ui->lineEdit_username->text();
     QString password = ui->lineEdit_password->text();
 
-    // Enable us to access methods or members from parent widget
+    // Enable to access methods or members from parent widget
     MainWindow* parent = qobject_cast<MainWindow*>(this->parent());
 
     // Check if the parent exist

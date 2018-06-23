@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 	}
 
 	// char to work on
-	char ch=0;
+	char ch = 0;
 	// contains information about which bit of char to work on
 	int bit_count = 0;
 	//output testfile
@@ -52,15 +52,15 @@ int main(int argc, char** argv) {
 	To extract the message from the image, we will iterate through the pixels and extract the LSB of
 	the pixel values (RGB) and this way we can get our message.
 	*/
-	for(int row=0; row < image.rows; row++) {
-		for(int col=0; col < image.cols; col++) {
-			for(int color=0; color < 3; color++) {
+	for(int row = 0; row < image.rows; row++) {
+		for(int col = 0; col < image.cols; col++) {
+			for(int color = 0; color < 3; color++) {
 
 				// stores the pixel details
-				Vec3b pixel = image.at<Vec3b>(Point(row,col));
+				Vec3b pixel = image.at<Vec3b>(Point(row, col));
 
 				// manipulate char bits according to the LSB of pixel values
-				if(isBitSet(pixel.val[color],0))
+				if(isBitSet(pixel.val[color], 0))
 					ch |= 1;
 
 				// increment bit_count to work on next bit
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
 					ch = 0;
 				}
 				else {
-					
+
 					ch = ch << 1;
 				}
 
@@ -91,4 +91,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-

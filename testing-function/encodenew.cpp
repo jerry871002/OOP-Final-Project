@@ -63,18 +63,18 @@ int main(int argc, char** argv) {
 	We are manipulating bits in such way that changing LSB of the pixel values will not make a huge difference.
 	The image will still look similiar to the naked eye.
 	*/
-	cout<< image.rows<<"\n";
-	cout<< image.cols<<"\n";
+	cout << image.rows << "\n";
+	cout << image.cols << "\n";
 
-	for(int row=0; row < image.rows; row++) {
-		for(int col=0; col < image.cols; col++) {
-			for(int color=0; color < 3; color++) {
+	for(int row = 0; row < image.rows; row++) {
+		for(int col = 0; col < image.cols; col++) {
+			for(int color = 0; color < 3; color++) {
 				// stores the pixel details
 				Vec3b pixel = image.at<Vec3b>(Point(row,col));//像素
 
 				// if bit is 1 : change LSB of present color value to 1.
 				// if bit is 0 : change LSB of present color value to 0.
-				if(isBitSet(ch,7-bit_count))
+				if(isBitSet(ch, 7 - bit_count))
 					pixel.val[color] |= 1;
 				    //	pixel.val[color] or 1(強制設成1)
 				else
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
 			}
 		}
 	}
-	
+
 	OUT:;
 
 
@@ -124,4 +124,3 @@ int main(int argc, char** argv) {
     imwrite(output,image);
     return 0;
 }
-

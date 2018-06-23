@@ -1,14 +1,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
 int main(int argc, char const *argv[]) {
     fstream inFile(argv[1], ios::in);
     fstream outFile(argv[2], ios::out);
-    inFile.open();
-    outFile.open();
 
     string messageToHide;
     string publicMessage;
@@ -22,15 +21,20 @@ int main(int argc, char const *argv[]) {
     key /= publicMessage.length();
     cout << key << endl;
 
-    //encode the message
-    for(int i = 0; i < messageToHide.length(); i++)
-        messageToHide[i] = messageToHide[i] ^ key;
-    cout << messageToHide << endl;
+    cout << "Before encode:" << endl;
+    for(int i = 0; i < messageToHide.length(); i++) {
+        cout << messageToHide[i] << " ";
+        cout << (int)messageToHide[i] << endl;
+    }
 
-    // decode the message
-    for(int i = 0; i < messageToHide.length(); i++)
+    //encode the message
+    cout << "After encode:" << endl;
+    for(int i = 0; i < messageToHide.length(); i++) {
         messageToHide[i] = messageToHide[i] ^ key;
-    cout << messageToHide << endl;
+        cout << messageToHide[i] << " ";
+        cout << (int)messageToHide[i] << endl;
+    }
+    outFile << messageToHide;
 
     inFile.close();
     outFile.close();

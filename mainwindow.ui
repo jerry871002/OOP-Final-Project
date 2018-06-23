@@ -63,7 +63,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -120,6 +120,9 @@
         </item>
         <item>
          <widget class="QTextEdit" name="textEdit_hide">
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
           <property name="placeholderText">
            <string>Words to hide...</string>
           </property>
@@ -127,6 +130,9 @@
         </item>
         <item>
          <widget class="QTextEdit" name="textEdit_key_encode">
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
           <property name="placeholderText">
            <string>Say something...</string>
           </property>
@@ -196,6 +202,9 @@
         </item>
         <item>
          <widget class="QTextEdit" name="textEdit_key_decode">
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
           <property name="placeholderText">
            <string>What did he or she tell you?</string>
           </property>

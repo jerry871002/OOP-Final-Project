@@ -3,10 +3,10 @@
 using namespace std;
 
 int main() {
-    //string messageToHide = "NCTU";
-    //string publicMessage = "My mom miss you a lot.";
-    string messageToHide = "今晚九點任務A，B計畫";
-    string publicMessage = "我今天去超市買了一條香腸";
+    string messageToHide = "Jerry";
+    string publicMessage = "jerry";
+    //string messageToHide = "今晚九點任務A，B計畫";
+    //string publicMessage = "我今天去超市買了一條香腸";
 
     int key = 0;
     for(int i = 0; i < publicMessage.length(); i++)

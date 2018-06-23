@@ -14,6 +14,8 @@ class LoginDialog : public QDialog
 {
     Q_OBJECT
 
+    friend class MainWindow;
+
 public:
     explicit LoginDialog(QWidget *parent = 0);
     ~LoginDialog();
@@ -24,7 +26,6 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
-
     QSqlDatabase myDB;
 };
 
