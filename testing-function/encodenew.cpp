@@ -6,13 +6,12 @@
 using namespace std;
 using namespace cv;
 
-// Checks whether the bit is set or not at a particular position.
-// Returns true if set
-// Returns false if not set
+
+
 bool isBitSet(char ch, int pos) {
 	// 7 6 5 4 3 2 1 0
-	ch = ch >> pos;
-	if(ch & 1)
+	ch = ch >> pos;//右移幾個pos
+	if(ch & 1)//ch and 1=1?
 		return true;
 	return false;
 }
@@ -28,23 +27,23 @@ int main(int argc, char** argv) {
 	*/
 
 	// Checks if proper number of arguments are passed
-	if(argc != 4) {
+	if(argc != 3) {
 		cout << "Arguments Error" << "\n";
-		exit(-1);
+		return 1;
 	}
 
 	// Stores original image
 	Mat image = imread(argv[1]);
 	if(image.empty()) {
 		cout << "Image Error\n";
-		exit(-1);
+		return 1;
 	}
 
 	// Open file for text information
 	ifstream file(argv[2]);
 	if(!file.is_open()) {
 		cout << "File Error\n";
-		exit(-1);
+		return 1;
 	}
 
 	// char to work on
@@ -64,6 +63,8 @@ int main(int argc, char** argv) {
 	We are manipulating bits in such way that changing LSB of the pixel values will not make a huge difference.
 	The image will still look similiar to the naked eye.
 	*/
+	cout<< image.rows<<"\n";
+	cout<< image.cols<<"\n";
 
 	for(int row=0; row < image.rows; row++) {
 		for(int col=0; col < image.cols; col++) {
@@ -75,8 +76,9 @@ int main(int argc, char** argv) {
 				// if bit is 0 : change LSB of present color value to 0.
 				if(isBitSet(ch,7-bit_count))
 					pixel.val[color] |= 1;
+				    //	pixel.val[color] or 1(強制設成1)
 				else
-					pixel.val[color] &= ~1;
+					pixel.val[color] &= ~1;//維持原狀
 
 				// update the image with the changed pixel values
 				image.at<Vec3b>(Point(row,col)) = pixel;
@@ -84,7 +86,7 @@ int main(int argc, char** argv) {
 				// increment bit_count to work on next bit
 				bit_count++;
 
-				// if last_null_char is true and bit_count is 8, then our message is successfully encode.
+				// 如果讀到文字檔的最後一個字元 則跳出三個迴圈輸出圖片
 				if(last_null_char && bit_count == 8) {
 					encoded  = true;
 					goto OUT;
@@ -105,17 +107,21 @@ int main(int argc, char** argv) {
 			}
 		}
 	}
+	
 	OUT:;
+
 
 	// whole message was not encoded
 	if(!encoded) {
 		cout << "Message too big. Try with larger image.\n";
-		exit(-1);
+		return 2;
 	}
 
 	// Writes the stegnographic image
-	imwrite(argv[3],image);
-
+	//imwrite(argv[3],image);
+	string output("encode-");
+	output =  output +argv[1];
+    imwrite(output,image);
     return 0;
 }
 
