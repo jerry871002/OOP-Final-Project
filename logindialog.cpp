@@ -1,8 +1,10 @@
+#include <QFileInfo>
+#include <QMessageBox>
 #include "user.h"
 #include "mainwindow.h"
 #include "logindialog.h"
-#include "ui_logindialog.h"
 #include "ui_mainwindow.h"
+#include "ui_logindialog.h"
 
 #define PATH_TO_DB "/Users/Jerry_Yang/Desktop/oop-final-project/users-info.db"
 

@@ -56,6 +56,9 @@
         <pointsize>14</pointsize>
        </font>
       </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>
@@ -63,7 +66,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -89,6 +92,9 @@
          <pointsize>14</pointsize>
          <kerning>true</kerning>
         </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
        </property>
        <attribute name="title">
         <string>Encode</string>

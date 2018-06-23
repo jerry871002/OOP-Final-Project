@@ -1,11 +1,11 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "logindialog.h"
-#include "ui_logindialog.h"
-#include <QDesktopWidget>
-#include <QFileDialog>
-#include <QPixmap>
 #include <QDir>
+#include <QPixmap>
+#include <QFileDialog>
+#include <QDesktopWidget>
+#include "mainwindow.h"
+#include "logindialog.h"
+#include "ui_mainwindow.h"
+#include "ui_logindialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

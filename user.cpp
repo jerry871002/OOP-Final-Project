@@ -1,12 +1,7 @@
-#include <fstream>
-#include "user.h"
 #include <QDebug>
-
-#include <iostream>
-
+#include <fstream>
 #include <opencv2/opencv.hpp>
-
-#include <QStandardPaths>
+#include "user.h"
 
 using namespace std;
 using namespace cv;
@@ -39,25 +34,21 @@ void User::encode(QString filename, QString messageToHide, QString messageKey)
 void User::decode(QString filename, QString messageKey)
 {
     decodeImage(filename);
-    decrypt(messageKey);
+    QString theSecret = decrypt(messageKey);
 }
 
 void User::encrypt(QString QmessageToHide, QString QmessageKey)
 {
-    qDebug() << "Am I here?" << endl;
     ofstream outFile("messageEncrypted.txt");
 
     string messageToHide = QmessageToHide.toStdString();
     string messageKey = QmessageKey.toStdString();
-
-    qDebug() << QmessageToHide << '\n' << QmessageKey << endl;
 
     // Make a key by messageKey
     int key = 0;
     for (unsigned long i = 0; i < messageKey.length(); i++)
         key += (int)messageKey[i];
     key /= messageKey.length();
-    qDebug() << key << endl;
 
     // Encrypt the message
     for (unsigned long i = 0; i < messageToHide.length(); i++)
@@ -71,7 +62,25 @@ void User::encrypt(QString QmessageToHide, QString QmessageKey)
 
 QString User::decrypt(QString QmessageKey)
 {
+    string messageToFind;
+    ifstream inFile("messageEncrypted.txt");
+    getline(inFile, messageToFind);
+
     string messageKey = QmessageKey.toStdString();
+
+    // Make a key by messageKey
+    int key = 0;
+    for (unsigned long i = 0; i < messageKey.length(); i++)
+        key += (int)messageKey[i];
+    key /= messageKey.length();
+
+    // decode the message
+    for(unsigned long i = 0; i < messageToFind.length(); i++)
+        messageToFind[i] = messageToFind[i] ^ key;
+
+    inFile.close();
+
+    return QString::fromStdString(messageToFind);
 }
 
 bool isBitSet(char ch, int pos)
@@ -151,7 +160,7 @@ int User::encodeImage(QString Qfilename)
                 if (last_null_char && bit_count == 8)
                 {
                     encoded  = true;
-                    goto OUT;
+                    goto OUT; // 直接跳出三層迴圈
                 }
 
                 // if bit_count is 8 we pick the next char from the file and work on it
@@ -193,4 +202,59 @@ int User::encodeImage(QString Qfilename)
 void User::decodeImage(QString Qfilename)
 {
     string filename = Qfilename.toStdString();
+
+    // Stores original image
+    Mat image = imread(filename);
+    if (image.empty())
+    {
+        qDebug() << "Image Error\n";
+        return;
+    }
+
+    // char to work on
+    char ch = 0;
+    // contains information about which bit of char to work on
+    int bit_count = 0;
+    //output textfile
+    ofstream outFile("messageEncrypted.txt");
+
+    /*
+    To extract the message from the image, we will iterate through the pixels and extract the LSB of
+    the pixel values (RGB) and this way we can get our message.
+    */
+    for (int row = 0; row < image.rows; row++)
+    {
+        for (int col = 0; col < image.cols; col++)
+        {
+            for (int color = 0; color < 3; color++)
+            {
+                // stores the pixel details
+                Vec3b pixel = image.at<Vec3b>(Point(row, col));
+
+                // manipulate char bits according to the LSB of pixel values
+                if (isBitSet(pixel.val[color], 0))
+                    ch |= 1;
+
+                // increment bit_count to work on next bit
+                bit_count++;
+
+                // bit_count is 8, that means we got our char from the encoded image
+                if (bit_count == 8)
+                {
+                    // NULL char is encountered
+                    if (ch == '\0')
+                        goto OUT; // 直接跳出三層迴圈
+
+                    bit_count = 0;
+                    outFile << ch;
+                    ch = 0;
+                }
+                else
+                {
+                    ch = ch << 1;
+                }
+            }
+        }
+    }
+    OUT:;
 }
