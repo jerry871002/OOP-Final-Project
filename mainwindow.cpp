@@ -1,7 +1,8 @@
-#include <QDir>
 #include <QPixmap>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QDesktopWidget>
+#include <QStandardPaths>
 #include "mainwindow.h"
 #include "logindialog.h"
 #include "ui_mainwindow.h"
@@ -27,30 +28,32 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete logindialog;
+    delete currentUser;
 }
 
 void MainWindow::on_pushButton_choosefile_encode_clicked()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, "Choose an image", QDir::homePath(), "*.png");
+    QString file_name = QFileDialog::getOpenFileName(this, "Choose an image", QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), "*.png *.jpg");
     ui->lineEdit_filepath_encode->setText(file_name);
     QPixmap pix(file_name);
 
     // Set the image to proper size
     int w = ui->label_pic_encode->width();
     int h = ui->label_pic_encode->height();
-    ui->label_pic_encode->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    ui->label_pic_encode->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 void MainWindow::on_pushButton_choosefile_decode_clicked()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, "Choose an image", QDir::homePath(), "*.png");
+    QString file_name = QFileDialog::getOpenFileName(this, "Choose an image", QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), "*.png *.jpg");
     ui->lineEdit_filepath_decode->setText(file_name);
     QPixmap pix(file_name);
 
     // Set the image to proper size
     int w = ui->label_pic_decode->width();
     int h = ui->label_pic_decode->height();
-    ui->label_pic_decode->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    ui->label_pic_decode->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 void MainWindow::on_pushButton_logout_clicked()
@@ -79,7 +82,6 @@ void MainWindow::on_pushButton_encode_clicked()
         // Check if all neccessary information are provided
         if (!file_name.isEmpty() && !messageToHide.isEmpty() && !messageKey.isEmpty())
             currentUser->encode(file_name, messageToHide, messageKey);
-
     }
     else
     {

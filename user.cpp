@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <fstream>
+#include <QMessageBox>
 #include <opencv2/opencv.hpp>
 #include "user.h"
 
@@ -35,6 +36,7 @@ void User::decode(QString filename, QString messageKey)
 {
     decodeImage(filename);
     QString theSecret = decrypt(messageKey);
+    QMessageBox::information(NULL, "", "What he or she really want to say is:\n" + theSecret);
 }
 
 void User::encrypt(QString QmessageToHide, QString QmessageKey)
@@ -74,8 +76,8 @@ QString User::decrypt(QString QmessageKey)
         key += (int)messageKey[i];
     key /= messageKey.length();
 
-    // decode the message
-    for(unsigned long i = 0; i < messageToFind.length(); i++)
+    // Decode the message
+    for (unsigned long i = 0; i < messageToFind.length(); i++)
         messageToFind[i] = messageToFind[i] ^ key;
 
     inFile.close();
@@ -83,7 +85,7 @@ QString User::decrypt(QString QmessageKey)
     return QString::fromStdString(messageToFind);
 }
 
-bool isBitSet(char ch, int pos)
+bool User::isBitSet(char ch, int pos)
 {
     // 7 6 5 4 3 2 1 0
     ch = ch >> pos;
@@ -127,7 +129,7 @@ int User::encodeImage(QString Qfilename)
 
     /*
     To hide text into images. We are taking one char (8 bits) and each of the 8 bits are stored
-    in the Least Significant Bits (LSB) of the pixel values (Red,Green,Blue).
+    in the Least Significant Bits (LSB) of the pixel values (Red, Green, Blue).
     We are manipulating bits in such way that changing LSB of the pixel values will not make a huge difference.
     The image will still look similiar to the naked eye.
     */

@@ -23,6 +23,7 @@ protected:
     QString decrypt(QString QmessageKey);
     int encodeImage(QString Qfilename);
     void decodeImage(QString Qfilename);
+    bool isBitSet(char ch, int pos);
 
     // Access right to encode() and decode()
     const bool canEncode;
