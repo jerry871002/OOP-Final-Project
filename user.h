@@ -7,6 +7,7 @@ class User
 {
 public:
     User(QString fn = 0, QString ln = 0, QString rl = 0, bool en = false, bool de = false);
+    virtual ~User();
 
     virtual void encode(QString filename, QString messageToHide, QString messageKey) = 0;
     virtual void decode(QString filename, QString messageKey) = 0;
@@ -26,6 +27,7 @@ protected:
     // Utility functions
     void encrypt(QString QmessageToHide, QString QmessageKey);
     QString decrypt(QString QmessageKey);
+    virtual int generateKey(std::string messageKey) = 0;
 
 };
 

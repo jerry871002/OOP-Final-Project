@@ -19,3 +19,15 @@ void Player::decode(QString filename, QString messageKey)
     QString theSecret = decrypt(messageKey);
     QMessageBox::information(NULL, "", "What he or she really want to say is:\n" + theSecret);
 }
+
+int Player::generateKey(std::string messageKey)
+{
+    int key = 0;
+    messageKey = "player" + messageKey;
+
+    for (unsigned long i = 0; i < messageKey.length(); i++)
+        key += (int)messageKey[i];
+    key /= messageKey.length();
+
+    return key;
+}

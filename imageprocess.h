@@ -1,12 +1,10 @@
 #ifndef IMAGEPROCESS_H
 #define IMAGEPROCESS_H
 
+#include <QString>
 
 class ImageProcess
 {
-public:
-    ImageProcess();
-
 protected:
     int encodeImage(QString Qfilename);
     void decodeImage(QString Qfilename);

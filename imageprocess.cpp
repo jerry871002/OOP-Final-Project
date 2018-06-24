@@ -1,5 +1,9 @@
+#include <QDebug>
 #include <opencv2/opencv.hpp>
 #include "imageprocess.h"
+
+using namespace std;
+using namespace cv;
 
 bool ImageProcess::isBitSet(char ch, int pos)
 {

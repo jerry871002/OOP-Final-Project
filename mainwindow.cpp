@@ -59,7 +59,10 @@ void MainWindow::on_pushButton_choosefile_decode_clicked()
 void MainWindow::on_pushButton_logout_clicked()
 {
     logindialog->ui->label_status->setText("[+]Connected to Database File");
+
+    // For safety reason
     delete currentUser;
+    currentUser = NULL;
 
     // Move the login dialog to the center of the screen
     QRect screenGeometry = QApplication::desktop()->screenGeometry();

@@ -11,6 +11,9 @@ public:
 
     void encode(QString filename, QString messageToHide, QString messageKey);
     void decode(QString filename, QString messageKey);
+
+protected:
+    int generateKey(std::string messageKey);
 };
 
 #endif // PLAYER_H

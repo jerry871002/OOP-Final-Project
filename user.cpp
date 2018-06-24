@@ -2,7 +2,6 @@
 #include "user.h"
 
 using namespace std;
-using namespace cv;
 
 User::User(QString fn, QString ln, QString rl, bool en, bool de) :
     firstName(fn),
@@ -12,6 +11,11 @@ User::User(QString fn, QString ln, QString rl, bool en, bool de) :
     canDecode(de)
 {
     // Nothing to do here
+}
+
+User::~User()
+{
+
 }
 
 bool User::checkEncode() const
@@ -32,10 +36,7 @@ void User::encrypt(QString QmessageToHide, QString QmessageKey)
     string messageKey = QmessageKey.toStdString();
 
     // Make a key by messageKey
-    int key = 0;
-    for (unsigned long i = 0; i < messageKey.length(); i++)
-        key += (int)messageKey[i];
-    key /= messageKey.length();
+    int key = generateKey(messageKey);
 
     // Encrypt the message
     for (unsigned long i = 0; i < messageToHide.length(); i++)
@@ -56,10 +57,7 @@ QString User::decrypt(QString QmessageKey)
     string messageKey = QmessageKey.toStdString();
 
     // Make a key by messageKey
-    int key = 0;
-    for (unsigned long i = 0; i < messageKey.length(); i++)
-        key += (int)messageKey[i];
-    key /= messageKey.length();
+    int key = generateKey(messageKey);
 
     // Decode the message
     for (unsigned long i = 0; i < messageToFind.length(); i++)
