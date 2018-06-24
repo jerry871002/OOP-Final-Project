@@ -15,7 +15,7 @@ User::User(QString fn, QString ln, QString rl, bool en, bool de) :
 
 User::~User()
 {
-
+    // Nothing to do here
 }
 
 bool User::checkEncode() const
