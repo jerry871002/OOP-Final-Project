@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         logindialog.cpp \
-        user.cpp
+        user.cpp \
+        imageprocess.cpp \
+    player.cpp
 
 HEADERS += \
         mainwindow.h \
         logindialog.h \
-        user.h
+        user.h \
+        imageprocess.h \
+    player.h
 
 FORMS += \
         mainwindow.ui \

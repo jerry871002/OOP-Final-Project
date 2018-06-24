@@ -1,6 +1,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include "user.h"
+#include "player.h"
 #include "mainwindow.h"
 #include "logindialog.h"
 #include "ui_mainwindow.h"
@@ -63,7 +64,7 @@ void LoginDialog::on_pushButton_login_clicked()
     }
 
     QSqlQuery qry;
-    if (qry.exec("SELECT username, password, first_name, last_name, can_encode, can_decode \
+    if (qry.exec("SELECT username, password, first_name, last_name, role, can_encode, can_decode \
                 FROM users_info WHERE username=\'" + username + "\' AND password =\'" + password + "\'"))
     {
         if (qry.next())
@@ -71,10 +72,20 @@ void LoginDialog::on_pushButton_login_clicked()
             ui->label_status->setText("[+]Valid username and password");
             QString msg  = "Welcome! " + qry.value(2).toString() + " " + qry.value(3).toString();
 
-            parent->currentUser = new User(qry.value(2).toString(), qry.value(3).toString(),
-                                           qry.value(4).toBool(), qry.value(5).toBool());
+            QString role = qry.value(4).toString();
+            if (role == "player")
+                parent->currentUser = new Player(qry.value(2).toString(), qry.value(3).toString(), "player",
+                                           qry.value(5).toBool(), qry.value(6).toBool());
+            // 教練跟經理的還沒寫
+            /*else if (role == "coach")
+                parent->currentUser = new Coach(qry.value(2).toString(), qry.value(3).toString(), "coach",
+                                           qry.value(5).toBool(), qry.value(6).toBool());
+            else if (role == "manager")
+                parent->currentUser = new Manager(qry.value(2).toString(), qry.value(3).toString(), "manager",
+                                           qry.value(5).toBool(), qry.value(6).toBool());*/
 
-            parent->ui->label_username->setText("Current User: " + qry.value(2).toString() + " " + qry.value(3).toString());
+            parent->ui->label_username->setText("Current User: " + qry.value(2).toString() + " " + qry.value(3).toString() \
+                                                +  " ( " + role + " )");
 
             ui->lineEdit_username->clear();
             ui->lineEdit_password->clear();

@@ -7,9 +7,10 @@
 using namespace std;
 using namespace cv;
 
-User::User(QString fn, QString ln, bool en, bool de) :
+User::User(QString fn, QString ln, QString rl, bool en, bool de) :
     firstName(fn),
     lastName(ln),
+    role(rl),
     canEncode(en),
     canDecode(de)
 {
