@@ -1,15 +1,13 @@
-#include <QDebug>
 #include <fstream>
-#include <QMessageBox>
-#include <opencv2/opencv.hpp>
 #include "user.h"
 
 using namespace std;
 using namespace cv;
 
-User::User(QString fn, QString ln, bool en, bool de) :
+User::User(QString fn, QString ln, QString rl, bool en, bool de) :
     firstName(fn),
     lastName(ln),
+    role(rl),
     canEncode(en),
     canDecode(de)
 {
@@ -24,19 +22,6 @@ bool User::checkEncode() const
 bool User::checkDecode() const
 {
     return canDecode;
-}
-
-void User::encode(QString filename, QString messageToHide, QString messageKey)
-{
-    encrypt(messageToHide, messageKey);
-    encodeImage(filename);
-}
-
-void User::decode(QString filename, QString messageKey)
-{
-    decodeImage(filename);
-    QString theSecret = decrypt(messageKey);
-    QMessageBox::information(NULL, "", "What he or she really want to say is:\n" + theSecret);
 }
 
 void User::encrypt(QString QmessageToHide, QString QmessageKey)

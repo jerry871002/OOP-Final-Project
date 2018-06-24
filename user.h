@@ -6,10 +6,10 @@
 class User
 {
 public:
-    User(QString fn = 0, QString ln = 0, bool en = false, bool de = false);
+    User(QString fn = 0, QString ln = 0, QString rl = 0, bool en = false, bool de = false);
 
-    void encode(QString filename, QString messageToHide, QString messageKey);
-    void decode(QString filename, QString messageKey);
+    virtual void encode(QString filename, QString messageToHide, QString messageKey) = 0;
+    virtual void decode(QString filename, QString messageKey) = 0;
 
     bool checkEncode() const;
     bool checkDecode() const;
@@ -26,10 +26,6 @@ protected:
     // Utility functions
     void encrypt(QString QmessageToHide, QString QmessageKey);
     QString decrypt(QString QmessageKey);
-    int encodeImage(QString Qfilename);
-    void decodeImage(QString Qfilename);
-    bool isBitSet(char ch, int pos);
-
 
 };
 
