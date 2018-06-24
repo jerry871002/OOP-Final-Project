@@ -29,14 +29,18 @@ SOURCES += \
         logindialog.cpp \
         user.cpp \
         imageprocess.cpp \
-    player.cpp
+        player.cpp \
+        coach.cpp \
+        manager.cpp
 
 HEADERS += \
         mainwindow.h \
         logindialog.h \
         user.h \
         imageprocess.h \
-    player.h
+        player.h \
+        coach.h \
+        manager.h
 
 FORMS += \
         mainwindow.ui \
@@ -47,4 +51,3 @@ LIBS += \
 
 INCLUDEPATH += \
         /usr/local/Cellar/opencv/3.4.1_5/include
-
