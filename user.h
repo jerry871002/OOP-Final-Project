@@ -6,10 +6,11 @@
 class User
 {
 public:
-    User(QString fn = 0, QString ln = 0, bool en = false, bool de = false);
+    User(QString fn = 0, QString ln = 0, QString rl = 0, bool en = false, bool de = false);
+    virtual ~User();
 
-    void encode(QString filename, QString messageToHide, QString messageKey);
-    void decode(QString filename, QString messageKey);
+    virtual void encode(QString filename, QString messageToHide, QString messageKey) = 0;
+    virtual void decode(QString filename, QString messageKey) = 0;
 
     bool checkEncode() const;
     bool checkDecode() const;
@@ -17,16 +18,17 @@ public:
 protected:
     QString firstName;
     QString lastName;
-
-    // Utility functions
-    void encrypt(QString QmessageToHide, QString QmessageKey);
-    QString decrypt(QString QmessageKey);
-    int encodeImage(QString Qfilename);
-    void decodeImage(QString Qfilename);
+    QString role;
 
     // Access right to encode() and decode()
     const bool canEncode;
     const bool canDecode;
+
+    // Utility functions
+    void encrypt(QString QmessageToHide, QString QmessageKey);
+    QString decrypt(QString QmessageKey);
+    virtual int generateKey(std::string messageKey) = 0;
+
 };
 
 #endif // USER_H
