@@ -61,7 +61,7 @@ void LoginDialog::on_pushButton_login_clicked()
     // Check if Database is opened and connected
     if (!myDB.open())
     {
-        ui->label_status->setText("[!]No connextion to DB");
+        ui->label_status->setText("[!]No connection to DB");
         return;
     }
 
