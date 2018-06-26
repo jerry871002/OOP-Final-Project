@@ -12,7 +12,7 @@ public:
     void encode(QString filename, QString messageToHide, QString messageKey);
     void decode(QString filename, QString messageKey);
 
-protected:
+private:
     int generateKey(std::string messageKey);
 };
 

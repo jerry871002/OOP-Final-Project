@@ -60,6 +60,15 @@ void MainWindow::on_pushButton_logout_clicked()
 {
     logindialog->ui->label_status->setText("[+]Connected to Database File");
 
+    // 清空圖片跟文字
+    ui->lineEdit_filepath_encode->setText("");
+    ui->lineEdit_filepath_decode->setText("");
+    ui->textEdit_key_encode->setText("");
+    ui->textEdit_key_decode->setText("");
+    ui->textEdit_hide->setText("");
+    ui->label_pic_encode->clear();
+    ui->label_pic_decode->clear();
+
     // For safety reason
     delete currentUser;
     currentUser = NULL;

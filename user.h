@@ -16,10 +16,6 @@ public:
     bool checkDecode() const;
 
 protected:
-    QString firstName;
-    QString lastName;
-    QString role;
-
     // Access right to encode() and decode()
     const bool canEncode;
     const bool canDecode;
@@ -28,6 +24,11 @@ protected:
     void encrypt(QString QmessageToHide, QString QmessageKey);
     QString decrypt(QString QmessageKey);
     virtual int generateKey(std::string messageKey) = 0;
+
+private:
+    QString firstName;
+    QString lastName;
+    QString role;
 
 };
 
