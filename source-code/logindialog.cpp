@@ -9,7 +9,7 @@
 #include "ui_mainwindow.h"
 #include "ui_logindialog.h"
 
-#define PATH_TO_DB "/Users/Jerry_Yang/Desktop/oop-final-project/users-info.db"
+#define PATH_TO_DB "/Users/Jerry_Yang/Desktop/oop-final-project/source-code/users-info.db"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
